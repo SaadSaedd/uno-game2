@@ -1,0 +1,325 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    max-width: 1000px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Mode Selection Screen */
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.mode-buttons button {
+    padding: 15px 30px;
+    font-size: 18px;
+}
+
+/* Multiplayer Menu Screen */
+.multiplayer-options {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.option {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+input[type="text"] {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Lobby Screen */
+.room-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#roomCode {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.player-list {
+    margin: 20px 0;
+}
+
+#playerList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#playerList li {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+#playerList li.host::after {
+    content: " (Host)";
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Game Screen */
+.game-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.other-players {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.player-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.player-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.player-hand-display {
+    display: flex;
+}
+
+.card-back {
+    width: 40px;
+    height: 60px;
+    margin-right: 5px;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+.center-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+}
+
+.discard-pile, .draw-pile {
+    margin: 0 20px;
+}
+
+#unoBtn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff0000;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#unoBtn:disabled {
+    background-color: #cccccc;
+}
+
+.player-hand {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: auto;
+    padding: 20px 0;
+}
+
+.card {
+    width: 80px;
+    height: 120px;
+    margin: 0 5px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-Red { background-color: #ff5555; }
+.card-Blue { background-color: #5555ff; }
+.card-Green { background-color: #55aa55; }
+.card-Yellow { background-color: #ffaa00; }
+.card-Wild { 
+    background: linear-gradient(45deg, red, blue, green, yellow);
+}
+
+.card-type {
+    font-size: 14px;
+    text-align: left;
+}
+
+.card-value {
+    font-size: 24px;
+    text-align: center;
+    margin: auto;
+}
+
+.current-player {
+    outline: 3px solid gold;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { outline-color: gold; }
+    to { outline-color: orange; }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.wild-color-picker {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.color-Red { background-color: #ff5555; }
+.color-Blue { background-color: #5555ff; }
+.color-Green { background-color: #55aa55; }
+.color-Yellow { background-color: #ffaa00; }
+
+/* Button Styles */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#leaveLobbyBtn {
+    background-color: #f44336;
+    margin-top: 20px;
+}
+
+#leaveLobbyBtn:hover {
+    background-color: #d32f2f;
+}
+
+#gameStatus {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
